@@ -1,0 +1,2 @@
+ip saddr 192.0.2.0/24 iifname "eth1" udp dport 53 accept
+ip saddr 192.0.2.0/24 iifname "eth1" tcp dport 53 accept

@@ -1,0 +1,37 @@
+table ip nat {
+  chain postrouting {
+    type nat hook postrouting priority 100;
+    oifname "$WAN_IFACE" masquerade
+  }
+}
+
+table inet filter {
+  chain input {
+    type filter hook input priority 0;
+    policy drop;
+
+    iif "lo" accept
+    ct state established,related accept
+    ip protocol icmp accept
+
+    include "/opt/packetfence/firewall/rules/user_input.nft"
+  }
+
+  chain forward {
+    type filter hook forward priority 0;
+    policy drop;
+
+    ct state established,related accept
+    iif "$LAN_IFACE" oif "$WAN_IFACE" accept
+
+    include "/opt/packetfence/firewall/rules/user_forward.nft"
+  }
+
+  chain output {
+    type filter hook output priority 0;
+    policy accept;
+    ip protocol icmp accept
+
+    include "/opt/packetfence/firewall/rules/user_output.nft"
+  }
+}

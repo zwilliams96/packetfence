@@ -1,0 +1,1 @@
+ip saddr 172.22.0.1 iifname "$WAN_IFACE" tcp dport 22 accept
