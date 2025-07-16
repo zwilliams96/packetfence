@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <title>PacketFence</title>
+  <script src="https://unpkg.com/htmx.org"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6 bg-gray-100 text-gray-900">
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold">PacketFence GUI</h1>
+    <nav class="mt-2 space-x-4">
+      <a href="/" class="text-blue-600">Dashboard</a>
+      <a href="/rules" class="text-blue-600">Firewall Rules</a>
+    </nav>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+</html>

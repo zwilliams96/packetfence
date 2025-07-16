@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Firewall Rules (Forward Chain)</h2>
+<form method="post" action="/rules/add">
+  <input type="text" name="rule" placeholder="ip saddr 192.168.0.0/24 tcp dport 80 accept" class="border p-2 w-full">
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 mt-2">Add Rule</button>
+</form>
+<ul class="mt-4">
+  {% for rule in rules %}
+    <li class="bg-gray-100 p-2 my-1 rounded">{{ rule }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
