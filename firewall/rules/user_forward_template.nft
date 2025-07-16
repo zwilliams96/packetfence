@@ -1,2 +1,4 @@
 ip saddr 192.0.2.0/24 iifname "$LAN_IFACE" udp dport 53 accept
 ip saddr 192.0.2.0/24 iifname "$LAN_IFACE" tcp dport 53 accept
+ip saddr 192.0.2.0/24 iifname "$LAN_IFACE" udp dport 67 accept
+ip saddr 192.0.2.0/24 iifname "$LAN_IFACE" tcp dport 443 accept

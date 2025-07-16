@@ -25,4 +25,4 @@ sed \
  /opt/packetfence/firewall/rules/user_output_template.nft > /opt/packetfence/firewall/rules/user_output.nft
 
 
-nft -f /opt/packetfence/firewall/rules/base.nft
+/usr/sbin/nft -f /opt/packetfence/firewall/rules/base.nft

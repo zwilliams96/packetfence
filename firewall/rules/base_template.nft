@@ -20,9 +20,9 @@ table inet filter {
   chain forward {
     type filter hook forward priority 0;
     policy drop;
+    ip protocol icmp accept
 
     ct state established,related accept
-    iif "$LAN_IFACE" oif "$WAN_IFACE" accept
 
     include "/opt/packetfence/firewall/rules/user_forward.nft"
   }

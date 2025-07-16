@@ -1,1 +1,1 @@
-ip saddr 172.22.0.1 iifname "eth0" tcp dport 22 accept
+ip saddr 192.168.1.81 iifname "enp0s3" tcp dport 22 accept
