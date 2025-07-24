@@ -1,23 +1,58 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2 class="text-xl font-bold mb-4">Firewall Rules (Forward Chain)</h2>
-<form method="post" action="/rules/add">
-  <input type="text" name="rule" placeholder="ip saddr 192.168.0.0/24 tcp dport 80 accept" class="border p-2 w-full">
-  <button type="submit" class="bg-blue-600 text-white px-4 py-2 mt-2">Add Rule</button>
-</form>
-<ul class="mt-4">
-  {% for input in inputs %}
-    <li class="bg-gray-100 p-2 my-1 rounded">{{ input }}</li>
-  {% endfor %}
-</ul>
-<ul class="mt-4">
-  {% for forward in forwards %}
-    <li class="bg-gray-100 p-2 my-1 rounded">{{ forward }}</li>
-  {% endfor %}
-</ul>
-<ul class="mt-4">
-  {% for output in outputs %}
-    <li class="bg-gray-100 p-2 my-1 rounded">{{ output }}</li>
-  {% endfor %}
-</ul>
+<div x-data="{ tab: 'input' }" class="w-full">
+  <!-- Tabs -->
+  <div class="flex space-x-4 border-b border-gray-200 mb-4">
+    <button
+      class="py-2 px-4 text-sm font-medium"
+      :class="tab === 'input' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'"
+      @click="tab = 'input'"
+    >
+      Input
+    </button>
+    <button
+      class="py-2 px-4 text-sm font-medium"
+      :class="tab === 'output' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'"
+      @click="tab = 'output'"
+    >
+      Output
+    </button>
+    <button
+      class="py-2 px-4 text-sm font-medium"
+      :class="tab === 'forward' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'"
+      @click="tab = 'forward'"
+    >
+      Forward
+    </button>
+  </div>
+
+  <!-- Tab Content -->
+  <div x-show="tab === 'input'" class="p-4 border rounded-lg bg-white shadow">
+    <h2 class="text-lg font-semibold">Input Rules</h2>
+      <ul class="mt-4">
+        {% for input in inputs %}
+          <li class="bg-gray-100 p-2 my-1 rounded">{{ input }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+
+  <div x-show="tab === 'output'" class="p-4 border rounded-lg bg-white shadow" x-cloak>
+    <h2 class="text-lg font-semibold">Output Rules</h2>
+      <ul class="mt-4">
+        {% for output in outputs %}
+          <li class="bg-gray-100 p-2 my-1 rounded">{{ output }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+
+  <div x-show="tab === 'forward'" class="p-4 border rounded-lg bg-white shadow" x-cloak>
+    <h2 class="text-lg font-semibold">Forward Rules</h2>
+      <ul class="mt-4">
+        {% for forward in forwards %}
+          <li class="bg-gray-100 p-2 my-1 rounded">{{ forward }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+</div>
+
 {% endblock %}
