@@ -5,8 +5,10 @@ bp = Blueprint("rules", __name__, url_prefix="/rules")
 
 @bp.route("/", methods=["GET"])
 def view_rules():
-    rules = nftables.get_user_rules("forward")
-    return render_template("rules.html", rules=rules)
+    forwards = nftables.get_user_rules("forward")
+    inputs = nftables.get_user_rules("input")
+    outputs = nftables.get_user_rules("output")
+    return render_template("rules.html", forwards=forwards,inputs=inputs,outputs=outputs)
 
 @bp.route("/add", methods=["POST"])
 def add_rule():

@@ -6,8 +6,18 @@
   <button type="submit" class="bg-blue-600 text-white px-4 py-2 mt-2">Add Rule</button>
 </form>
 <ul class="mt-4">
-  {% for rule in rules %}
-    <li class="bg-gray-100 p-2 my-1 rounded">{{ rule }}</li>
+  {% for input in inputs %}
+    <li class="bg-gray-100 p-2 my-1 rounded">{{ input }}</li>
+  {% endfor %}
+</ul>
+<ul class="mt-4">
+  {% for forward in forwards %}
+    <li class="bg-gray-100 p-2 my-1 rounded">{{ forward }}</li>
+  {% endfor %}
+</ul>
+<ul class="mt-4">
+  {% for output in outputs %}
+    <li class="bg-gray-100 p-2 my-1 rounded">{{ output }}</li>
   {% endfor %}
 </ul>
 {% endblock %}
